@@ -1,4 +1,9 @@
+import 'package:nike_store/data/common/http_client.dart';
 import 'package:nike_store/data/product.dart';
+import 'package:nike_store/data/source/product_data_source.dart';
+
+final productRepository =
+    ProductRepository(ProductRemoteDataSource(httpClient));
 
 abstract class IProductRepository {
   Future<List<ProductEntity>> getAll(int sort);
@@ -6,15 +11,14 @@ abstract class IProductRepository {
 }
 
 class ProductRepository implements IProductRepository {
+  final IProductDataSource dataSource;
+
+  ProductRepository(this.dataSource);
   @override
-  Future<List<ProductEntity>> getAll(int sort) {
-    // TODO: implement getAll
-    throw UnimplementedError();
-  }
+  Future<List<ProductEntity>> getAll(int sort) => dataSource.getAll(sort);
 
   @override
   Future<List<ProductEntity>> search(String searchTerm) {
-    // TODO: implement search
-    throw UnimplementedError();
+    return dataSource.search(searchTerm);
   }
 }

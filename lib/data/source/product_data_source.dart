@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:nike_store/common/exceptions.dart';
+import 'package:nike_store/data/common/http_response_validator.dart';
 import 'package:nike_store/data/product.dart';
 
 abstract class IProductDataSource {
@@ -7,7 +7,9 @@ abstract class IProductDataSource {
   Future<List<ProductEntity>> search(String searchTerm);
 }
 
-class ProductRemoteDataSource implements IProductDataSource {
+class ProductRemoteDataSource
+    with HttpResponseValidator
+    implements IProductDataSource {
   final Dio httpClient;
 
   ProductRemoteDataSource(this.httpClient);
@@ -28,14 +30,9 @@ class ProductRemoteDataSource implements IProductDataSource {
         await httpClient.get('/product/search?q=$searchTerm');
     validateResponse(response);
     final products = <ProductEntity>[];
-    (response.data as List)
-        .forEach((element) => products.add(ProductEntity.fromJson(element)));
-    return products;
-  }
-
-  validateResponse(Response response) {
-    if (response.statusCode != 200) {
-      throw AppExceptions();
+    for (var element in (response.data as List)) {
+      products.add(ProductEntity.fromJson(element));
     }
+    return products;
   }
 }
