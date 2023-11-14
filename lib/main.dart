@@ -17,10 +17,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: TextTheme(
-            bodyMedium: defaulTextStyle,
-            bodySmall: defaulTextStyle.apply(
-                color: LightThemeColors.secondaryTextColor),
-            titleLarge: defaulTextStyle.copyWith(fontWeight: FontWeight.bold)),
+          titleLarge: defaulTextStyle.copyWith(fontWeight: FontWeight.bold),
+          titleMedium: defaulTextStyle.apply(
+            color: LightThemeColors.secondaryTextColor,
+          ),
+          bodyMedium: defaulTextStyle,
+          bodySmall:
+              defaulTextStyle.apply(color: LightThemeColors.secondaryTextColor),
+          labelLarge: defaulTextStyle,
+        ),
         colorScheme: const ColorScheme.light(
             primary: LightThemeColors.primaryColor,
             secondary: LightThemeColors.secondaryColor,
