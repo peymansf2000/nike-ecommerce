@@ -1,7 +1,10 @@
 *.dart linguist-detectable=true
-windows/* linguist-detectable=false
-web/* linguist-detectable=false
-linux/* linguist-detectable=false
-macos/* linguist-detectable=false
-android/* linguist-detectable=false
-ios/* linguist-detectable=false
+*.html linguist-detectable=false
+*.swift linguist-detectable=false
+*.kt linguist-detectable=false
+*.m linguist-detectable=false
+*.h linguist-detectable=false
+*.cmake linguist-detectable=false
+*.cc linguist-detectable=false
+*.rc linguist-detectable=false
+*.cpp linguist-detectable=false
